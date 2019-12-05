@@ -1,0 +1,27 @@
+{
+  "name": "itmd562-final",
+  "version": "1.0.0",
+  "description": "Tinkz Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinkzgee/ITMD562-Final.git"
+  },
+  "keywords": [
+    "store",
+    "shop",
+    "shoes"
+  ],
+  "author": "Elizabeth Herrera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tinkzgee/ITMD562-Final/issues"
+  },
+  "homepage": "https://github.com/tinkzgee/ITMD562-Final#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

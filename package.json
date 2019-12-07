@@ -4,7 +4,8 @@
   "description": "Tinkz Store",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -12,7 +13,7 @@
   },
   "keywords": [
     "store",
-    "shop",
+    "cart",
     "shoes"
   ],
   "author": "Elizabeth Herrera",
@@ -22,6 +23,12 @@
   },
   "homepage": "https://github.com/tinkzgee/ITMD562-Final#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.14",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
   }
 }

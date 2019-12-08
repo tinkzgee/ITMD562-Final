@@ -35,7 +35,6 @@ app.use((req, res, next) => {
 app.use(express.static(__dirname));
 console.log("This is the dir that's being returned in __dirname" + __dirname);
 app.use('/style', express.static(__dirname));
-app.use('/images', express.static(__dirname + '/images'));
 app.use('/scripts', express.static(__dirname + '/scripts'));
 
 

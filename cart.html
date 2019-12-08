@@ -13,17 +13,19 @@
     <h1>Fly High</h1>
     <h3>Check Out</h3>
     <h2><a href="index.html">Shop Shoes</a></h2>
-    <button id="btn" onclick="displayAllshoes()">Show Cart</button><br>
 <div></div>
-    <form id="cartCreate" action="">
-            <h3>Cart:</h3><br>
-            <input placeholder="Name" type="text" id="cartID"><br>
-            <input placeholder="0.00" type="number" id="cartID"><br>
-            <input type="button" value="Create Cart" onclick="postCart();"><br>
+<button id="btn" onclick="displayCart()">View Cart</button><br>
+<table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Quantity</th>
+                
+            </tr>
+        </thead>
+        <tbody id="tbody">
 
-           
-          </form>
-
-
+        </tbody>
+    </table>
 </body>
 </html>

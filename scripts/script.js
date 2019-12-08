@@ -39,4 +39,28 @@ function displayAllshoes() {
             console.log(`Error ${error}`)
         }
 });
-};
+
+function displayCart() {
+    const Url3='http://localhost:3000/cart/';
+    $.ajax({
+        url: Url3, 
+        method: "GET",
+        success: result => {
+            $('#tbody tr').remove();
+            $.each(result.cart, (i, item) => {
+                var eachrow = "<tr>"
+                            + "<td>" + item.cart._id + "</td>"
+                            +"<td>" + item.cart.quantity + "</td>"
+                            + "</tr>";
+                $('#tbody').append(eachrow);
+                            
+
+            })
+        },
+        error: error => {
+            console.log(`Error ${error}`)
+        }
+    });
+}
+
+}

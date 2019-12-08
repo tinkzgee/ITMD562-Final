@@ -6,8 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Tinks Store</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="./scripts/script.js"></script>
 </head>
 <body>
     <h1>Fly High</h1>
+    <h2><a href="cart.html">View Cart</a></h2>
+    <button id="btn" onclick="displayAllshoes()">Shop Shoes</button><br>
+    <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="tbody">
+    
+            </tbody>
+        </table>
+        <div></div>
+    <form id="shoeSelect" action="">
+            <h3>Add to Cart:</h3><br>
+            <input type="text" name="shoeID" id="shoeID"><br>
+            <input type="button" value="Submit" onclick="displaySpecificShoes();"><br>
+
+           
+          </form>
+    <div></div>
+
 </body>
 </html>

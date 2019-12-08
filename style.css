@@ -4,7 +4,26 @@ h1 {
     text-align: center;
 }
 
-body {
-    background-color: black;
+h2, a {
+    color: ivory;
+    text-align: right;
+  }
+
+h3 {
+    color: ivory;
+    text-align: left;
 }
 
+body {
+    padding: 1rem;
+    background-color: #615666;
+}
+
+table {
+    width: 100%;
+}
+
+.cart {
+    margin-left: 15%;
+    margin-right: 15%;
+  }

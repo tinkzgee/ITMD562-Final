@@ -6,10 +6,22 @@ const Shoes = require('../models/shoes_model'); //shoe module with schema
 
 router.get('/', (req, res, next) => {
     Shoes.find()
+        .select('-__v')
         .exec()
         .then(docs => {
-            console.log(docs);
-            res.status(200).json(docs);
+            const response = {
+                count: docs.length,
+                shoes: docs.map(doc => {
+                    return {
+                        shoes: doc,
+                        request: {
+                            type: "GET",
+                            url: "http://localhost:3000/shoes/" + doc._id
+                        }
+                    }
+                })
+            }
+            res.status(200).json(response);
         })
         .catch(err => {
             console.log(err);
@@ -28,10 +40,17 @@ router.post('/', (req, res, next) => {
     shoes
         .save()
         .then(result => {
-            console.log(result)
             res.status(201).json({
-                message: 'Handling POST requests to /shoes',
-                createdShoes: shoes
+                message: 'Added shoes to cart',
+                createdShoes: {
+                    name: result.name,
+                    price: result.price,
+                    _id: result.id
+                },
+                request: {
+                    type: "GET",
+                    url: "http://localhost:3000/shoes/" + result._id
+                }
             });
         })
         .catch(err => {
@@ -45,10 +64,17 @@ router.post('/', (req, res, next) => {
 router.get('/:shoesID', (req, res, next) => {
     const id = req.params.shoesID; //finding from url
     Shoes.findById(id) //finding the shoe
+        .select('-__v')
         .exec()
         .then(doc => { //passing the doc
-            console.log("From DB:", doc);
-            res.status(200).json(doc);
+            res.status(200).json({
+                shoes: doc,
+                request: {
+                    type: 'GET',
+                    description: 'Get all shoes',
+                    url: 'http://localhost:3000/shoes/'
+                }
+            });
         })
         .catch(err => {
             console.log(err);
@@ -58,15 +84,40 @@ router.get('/:shoesID', (req, res, next) => {
 
 router.patch('/:shoesID', (req, res, next) => {
     const id = req.params.shoesID;
-
+    const updateOps = {};
+    for (const ops of req.body) {
+        updateOps[ops.propName] =ops.value;
+    }
+    Shoes.updateOne({ _id: id}, {$set: updateOps})
+        .exec()
+        .then(result => {
+            res.status(200).json({
+                message: 'shoes updated',
+                request: {
+                    type: 'GET',
+                    url: 'http://localhost:3000/shoes/' + id
+                }
+            });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({error: err});
+        });
 });
 
 router.delete('/:shoesID', (req, res, next) => {
     const id = req.params.shoesID;
-    Shoes.remove({_id: id})
+    Shoes.deleteOne({ _id: id})
         .exec()
         .then(result => {
-            res.status(200).json(result);
+            res.status(200).json({
+                message: "shoes deleted",
+                request: {
+                    type: 'POST',
+                    url: 'http://localhost:3000/shoes/',
+                    body: { name: 'String', price: 'number'}
+                }
+            });
         })
         .catch(err => {
             console.log(err);
